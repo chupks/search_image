@@ -2,6 +2,8 @@ from requests import get, post
 from rutermextract import TermExtractor
 from bs4 import BeautifulSoup
 from pprint import pprint
+from itertools import product
+from math import tanh
 
 te = TermExtractor()
 
@@ -43,13 +45,49 @@ def get_text_keywords(text):
 	]
     
     return keywords
+#https://github.com/daniel-kurushin/product-space-ml/blob/main/utilites.py 
+def compare(S1,S2):
+    ngrams = [S1[i:i+3] for i in range(len(S1))]
+    count = 0
+    for ngram in ngrams:
+        count += S2.count(ngram)
 
+    return count/max(len(S1), len(S2))
+
+def compare_phrase(P1, P2):
+    def func(x, a=0.00093168, b=-0.04015416, c=0.53029845):
+        return a * x ** 2 + b * x ** 1 + c 
+    
+    P1 = P1.lower().split() if type(P1) == str else [ x.lower() for x in P1 ]
+    P2 = P2.lower().split() if type(P2) == str else [ x.lower() for x in P2 ]
+    n, v = 0, 0
+    for a, b in set([ tuple(sorted((a, b))) for a, b in product(P1, P2)]):
+        v += compare(a,b)
+        n += 1
+    try:
+        return tanh((v / n) / func(max(len(P1),len(P2))))
+    except ZeroDivisionError:
+        return 0       
+   
+def filter_keywords (keywords):
+    rez = [keywords[0]]
+    for kw in keywords:
+        tmp = []
+        for a,b in set([ tuple(sorted((a, b))) for a, b in product(rez, [kw])]):
+            v = compare_phrase(a,b)
+            tmp += [(v, a)]
+        print(tmp)
+        w = sorted(tmp, reverse=1)[0][0]
+        if w < 0.5:
+            rez += [kw]
+    return rez
+      
 for url in [
     "https://habr.com/ru/post/416889/"
 ]:
     kw = get_url_keywords(url)
     for term in kw [0 : 3]:
         text = parse_dukcduckgo (term)
-        kd = get_text_keywords(text)
-        
-        pprint((term, kd))
+        kw_for_kw = get_text_keywords(text)
+        filtered_kw_for_kw = filter_keywords(kw_for_kw)
+        pprint((term, kw_for_kw, filtered_kw_for_kw))
