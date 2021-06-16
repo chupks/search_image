@@ -4,11 +4,23 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 from itertools import product
 from math import tanh
+from time import sleep
 
 te = TermExtractor()
 
 stopterms = ['англ', 'такой образ']
-
+def open_graph(file_name):
+    open(file_name, 'w').write("digraph g {\n")
+    open(file_name, 'a').write("rankdir = LR\n")
+    
+def close_graph(file_name):
+    open(file_name, 'a').write("}")
+        
+def write_graph(file_name, x, y):
+	x = x.replace(' ','\n')
+	y = y.replace(' ','\n')
+	open(file_name, 'a').write('"%s" -> "%s"\n' % (x, y))
+    
 def parse_yandex_referats(url):
     content = get (url) .content
     html = BeautifulSoup (content, features="html5lib")
@@ -17,6 +29,7 @@ def parse_yandex_referats(url):
     return text
 
 def parse_dukcduckgo (term):
+    sleep (10)
     x = post(
 		'https://html.duckduckgo.com/html/', 
 		data={'q':term.replace(' ', '+')}, 
@@ -75,28 +88,29 @@ def filter_keywords (keywords):
         tmp = []
         for a,b in set([ tuple(sorted((a, b))) for a, b in product(rez, [kw])]):
             v = compare_phrase(a,b)
-            tmp += [(v, a)]
-        print(tmp)
-        w = sorted(tmp, reverse=1)[0][0]
+            tmp += [(v, a)]        
+            w = sorted(tmp, reverse=1)[0][0]
         if w < 0.5:
             rez += [kw]
     return rez
- def write_graph(file_name, x, y):
-	x = x.replace(' ','\n')
-	y = y.replace(' ','\n')
-	open(file_name, 'a').write('"%s" -> "%s"\n' % (x, y))
-
-	x = 'a'
-	y = 'b'
-
-	write_graph('graph.dot', x, y)
-		 	"a a" -> "b b"     
+     
+term_list = []
+pair_list = []
+ 
 for url in [
     "https://habr.com/ru/post/416889/"
 ]:
     kw = get_url_keywords(url)
-    for term in kw [0 : 3]:
+    term_list = filter_keywords(kw)
+    kw = term_list
+    for term in kw:
         text = parse_dukcduckgo (term)
         kw_for_kw = get_text_keywords(text)
         filtered_kw_for_kw = filter_keywords(kw_for_kw)
-        pprint((term, kw_for_kw, filtered_kw_for_kw))
+        term_list += filtered_kw_for_kw
+        pair_list += [ (term, x) for x in filtered_kw_for_kw ]
+
+open_graph('big-graph.dot')
+for a,b in pair_list:
+    write_graph('big-graph.dot', a, b)
+close_graph('big-graph.dot')
