@@ -81,7 +81,16 @@ def filter_keywords (keywords):
         if w < 0.5:
             rez += [kw]
     return rez
-      
+ def write_graph(file_name, x, y):
+	x = x.replace(' ','\n')
+	y = y.replace(' ','\n')
+	open(file_name, 'a').write('"%s" -> "%s"\n' % (x, y))
+
+	x = 'a'
+	y = 'b'
+
+	write_graph('graph.dot', x, y)
+		 	"a a" -> "b b"     
 for url in [
     "https://habr.com/ru/post/416889/"
 ]:
