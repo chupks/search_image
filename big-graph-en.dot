@@ -1,0 +1,210 @@
+digraph g {
+rankdir = LR
+"artificial
+intelligence" -> "artificial
+intelligence"
+"artificial
+intelligence" -> "computer
+science"
+"artificial
+intelligence" -> "problem
+solving"
+"artificial
+intelligence" -> "machine
+learning"
+"artificial
+intelligence" -> "coined
+term"
+"artificial
+intelligence" -> "john
+mccarthy"
+"artificial
+intelligence" -> "natural
+language"
+"artificial
+intelligence" -> "decision
+making"
+"artificial
+intelligence" -> "real
+time"
+"artificial
+intelligence" -> "knowledge
+representation"
+"artificial
+intelligence" -> "perform
+tasks"
+"artificial
+intelligence" -> "heuristic
+search"
+"artificial
+intelligence" -> "facial
+recognition"
+"adpushup
+que" -> "ad
+revenue"
+"adpushup
+que" -> "revenue
+optimization
+platform"
+"adpushup
+que" -> "helps
+publishers"
+"adpushup
+que" -> "google
+certified"
+"adpushup
+que" -> "b
+testing"
+"adpushup
+que" -> "publishing
+partner"
+"adpushup
+que" -> "header
+bidding"
+"adpushup
+que" -> "layout
+optimization
+header"
+"adpushup
+que" -> "publishers
+grow
+ad"
+"adpushup
+que" -> "bidding
+innovative
+ad
+formats"
+"adpushup
+que" -> "adblock
+recovery
+adpushup"
+"adpushup
+que" -> "help
+web"
+"adpushup
+que" -> "push
+function
+var
+ad_id"
+"adpushup
+que" -> "768
+mobile_ad_id"
+"adpushup
+que" -> "ad_id
+window
+innerwidth
+768"
+"adpushup
+que" -> "adpushup
+que"
+"adpushup
+que" -> "que
+push
+function"
+"without
+ai" -> "without
+ai"
+"without
+ai" -> "machine
+learning"
+"without
+ai" -> "computer
+program"
+"without
+ai" -> "meant
+solve"
+"natural
+language" -> "natural
+language"
+"natural
+language" -> "artificial
+intelligence"
+"natural
+language" -> "language
+processing
+nlp"
+"natural
+language" -> "computer
+science"
+"natural
+language" -> "ai
+programming"
+"natural
+language" -> "machine
+learning"
+"natural
+language" -> "knowledge
+base"
+"john
+mccarthy" -> "john
+mccarthy"
+"john
+mccarthy" -> "computer
+scientist"
+"john
+mccarthy" -> "artificial
+intelligence"
+"john
+mccarthy" -> "commentator
+bellator"
+"john
+mccarthy" -> "september
+4
+1927"
+"john
+mccarthy" -> "coined
+term"
+"var
+adpos
+document" -> "document
+getelementbyid"
+"var
+adpos
+document" -> "new
+formdata"
+"var
+adpos
+document" -> "div
+var"
+"var
+adpos
+document" -> "var
+adpos
+document"
+"page
+next" -> "next
+page"
+"class
+_ap_apex_ad
+div" -> "oracle
+apex"
+"class
+_ap_apex_ad
+div" -> "azure
+ad"
+"class
+_ap_apex_ad
+div" -> "1
+2"
+"class
+_ap_apex_ad
+div" -> "div
+id"
+"div
+id
+ad_id" -> "div
+id"
+"div
+id
+ad_id" -> "document
+getelementbyid"
+"document
+getelementbyid" -> "document
+getelementbyid"
+"document
+getelementbyid" -> "dom
+method"
+"document
+getelementbyid" -> "id
+attribute"
+}
